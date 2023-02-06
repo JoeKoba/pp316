@@ -1,16 +1,16 @@
-package ru.alexeykedr;
+package example;
 
-import ru.alexeykedr.model.User;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.Objects;
 
 @Component
 public class Main {
 
-    private final String url = "http://91.241.64.178:7081/api/users";
+    private final String url = "http://94.198.50.185:7081/api/users";
     private final RestTemplate restTemplate = new RestTemplate();
     private final HttpHeaders headers = new HttpHeaders();
     static String result = "";
@@ -25,11 +25,7 @@ public class Main {
         main.createUser();
         main.updateUser();
         main.deleteUser(3L);
-        if(result.length() != 18) {
-            System.out.println("Ошибка");
-        } else {
-            System.out.println("Итоговый код - " + result);
-        }
+        System.out.println(result);
     }
 
     public String getAllUsers() {
@@ -38,7 +34,7 @@ public class Main {
     }
 
     public void createUser() {
-        User user = new User("James","Brown", (byte) 41);
+        User user = new User("James", "Brown", (byte) 33);
         user.setId(3L);
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
         String request = restTemplate.postForEntity(url, entity, String.class).getBody();
@@ -47,9 +43,9 @@ public class Main {
     }
 
     public void updateUser() {
-        User user = new User("Thomas","Shelby", (byte) 27);
+        User user = new User("Thomas", "Shelby", (byte) 22);
         user.setId(3L);
-        HttpEntity<User> entity = new HttpEntity<>(user,headers);
+        HttpEntity<User> entity = new HttpEntity<>(user, headers);
         String response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class).getBody();
         result = result + response;
         new ResponseEntity<>(response, HttpStatus.OK);

@@ -1,4 +1,4 @@
-package ru.alexeykedr.model;
+package example;
 
 public class User {
 
