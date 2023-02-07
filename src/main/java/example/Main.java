@@ -7,8 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
 
-@Component
-public class Main {
+@Componentublic class Main {
 
     private final String url = "http://94.198.50.185:7081/api/users";
     private final RestTemplate restTemplate = new RestTemplate();
